@@ -3,9 +3,6 @@
   <head>
     <title>Profile</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -14,5 +11,22 @@
   <body>
     <h1>This is the profile page</h1>
     <p>Placeholder for later content</p>
+
+    <main class="container">
+      <section class="setting">
+        <h2>Profile settings</h2>
+        <hr>
+        <form id='change-username'>
+          <textarea name="text" placeholder="Type new username"></textarea>
+          <input id='tweet-submit' type="submit" value="Tweet">
+          <em><span id=tweet-counter>140</span></em>
+        </form>
+        <span id='errors'></span>
+      </section>
+
+      <div id="tweet-container">
+        <article class='tweet'></article>
+      </div>
+    </main>
   </body>
 </html>
