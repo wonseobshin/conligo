@@ -13,5 +13,22 @@
   <body>
     <h1>This is the profile page</h1>
     <p>Placeholder for later content</p>
+
+    <main class="container">
+      <section class="setting">
+        <h2>Profile settings</h2>
+        <hr>
+        <form id='change-username'>
+          <textarea name="text" placeholder="Type new username"></textarea>
+          <input id='tweet-submit' type="submit" value="Tweet">
+          <em><span id=tweet-counter>140</span></em>
+        </form>
+        <span id='errors'></span>
+      </section>
+
+      <div id="tweet-container">
+        <article class='tweet'></article>
+      </div>
+    </main>
   </body>
 </html>
