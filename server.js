@@ -1,6 +1,7 @@
 "use strict";
 
 require('dotenv').config();
+const cookieSession = require('cookie-session');
 
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
@@ -21,6 +22,12 @@ const usersRoutes = require("./routes/users");
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
+// set cookie options
+app.use(cookieSession({
+  name: 'session',
+  keys: ['compile'],
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
@@ -40,7 +47,12 @@ app.use("/api/users", usersRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
+  if (!req.session.userId){
   res.render("index");
+  }
+  else {
+    res.send("Welcome Back!")
+  }
 });
 
 app.listen(PORT, () => {
