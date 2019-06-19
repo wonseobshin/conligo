@@ -1,0 +1,32 @@
+#nav-bar {
+  background-color: grey;
+  height: 70pt;
+
+  .profile-pic {
+    line-height: 0pt;
+    padding: 10pt 10pt 10pt 10pt;
+    margin: auto;
+  }
+
+  span.header {
+    padding: 10pt 10pt 10pt 10pt;
+    margin: auto;
+    line-height: 3em;
+    font-size: 20pt;
+    color: white;
+  }
+
+  .button-container {
+    float: right;
+    margin: auto;
+    margin-top: 25pt;
+    padding-right: 10pt;
+    line-height: 10pt;
+
+    #logout {
+      float: right;
+      border: none;
+      background-color: white;
+    }
+  }
+}
