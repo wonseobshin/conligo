@@ -3,6 +3,11 @@
   height: 70pt;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    margin: 0;
+  }
 
   .profile-pic {
     line-height: 0pt;
@@ -13,7 +18,7 @@
     margin: auto;
   }
 
-  span.header {
+  div.header {
     padding: 10pt 10pt 10pt 10pt;
     margin: auto;
     line-height: 3em;
@@ -23,7 +28,6 @@
 
   .button-container {
     float: right;
-    margin-top: 25pt;
     padding-right: 10pt;
     line-height: 10pt;
 
