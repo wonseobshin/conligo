@@ -4,8 +4,6 @@ const WolframAlphaAPI = require('wolfram-alpha-api');
 const waApi = WolframAlphaAPI(apiKey);
 
 
-
-
 const wolfSearch = process.argv.slice(2).toString().split(',').join(' ');
 
 waApi.getFull({
