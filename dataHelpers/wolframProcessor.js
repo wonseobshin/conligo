@@ -1,24 +1,34 @@
-const dataJson = require('../wolframSample.json');
-/*   
-const apiKey = require('wolfapi.key');
-function searchWolfram(params) {
-let searchParamaters = params.split(' ').join('+');
-let apiQuery = `http://api.wolframalpha.com/v2/query?appid=${apiKey}&input=${searchParamaters}&includepodid=Result&output=json`
+require('dotenv').config();
+const apiKey = process.env.wolfAPI;
+const WolframAlphaAPI = require('wolfram-alpha-api');
+const waApi = WolframAlphaAPI(apiKey);
 
 
 
-*/
-const results = dataJson.queryresult
-const allResults = [];
-if(results.success) {
-    results.assumptions.values.forEach(element => {
-        // console.log(element.name)
-        allResults.push(element.name);    
-    });
-    console.log(allResults);
-    return allResults;
-} else {
-    console.log('No match found');
-    return false;
-}
-}
+
+const wolfSearch = process.argv.slice(2).toString().split(',').join(' ');
+
+waApi.getFull({
+    input: wolfSearch,
+    format: 'plaintext',
+    output: 'json'
+  }).then((queryresult) => {
+    let allResults = [];
+    if(queryresult.success) {
+        console.log(queryresult)
+        queryresult.assumptions.values.forEach(element => {
+            console.log('checking - ', element.name);
+            if (element.name === 'Book' || element.name === 'Movie') {
+                allResults.push(element.name);    
+            }
+        });
+        if (allResults.length < 1) {
+            allResults = false;
+        }
+        console.log(allResults);
+        return allResults;
+    } else {
+        console.log('No match found');
+        return false;
+    }
+  }).catch(console.error)
