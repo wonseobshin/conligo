@@ -4,6 +4,8 @@
     <span class="header">Conligo</span>
   </a>
   <div class="button-container">
-    <button id="logout">logout</button>
+    <% if (username) { %>
+    <a href="/logout"><button type="button" class="btn btn-secondary">logout</button></a>
+    <% } %>
   </div>
 </nav>

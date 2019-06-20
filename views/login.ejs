@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <% include ./partials/_header %>
     <% include ./partials/_navbar %>
-
-    <title>Conligo - Welcome Back</title>
+    <script type="text/javascript" src="/scripts/login.js"> </script>
+    <title>Conligo</title>
 </head>
 
 
@@ -21,7 +21,7 @@
         <div id="signup">
             <h1>Sign Up</h1>
 
-            <form action="/" method="post">
+            <form action="/register" method="post">
                 <div class="field-wrap">
                     <label>
                         Username<span class="req">*</span>
@@ -67,20 +67,20 @@
         <div id="login">
             <h1>Welcome Back!</h1>
 
-            <form action="/" method="post">
+            <form action="/login" method="post">
 
                 <div class="field-wrap">
                     <label>
                         Username<span class="req">*</span>
                     </label>
-                    <input type="text" required autocomplete="on" />
+                    <input type="text" name="username" required autocomplete="on" />
                 </div>
 
                 <div class="field-wrap">
                     <label>
                         Password<span class="req">*</span>
                     </label>
-                    <input type="password" required autocomplete="off" />
+                    <input type="password" name="password" required autocomplete="off" />
                 </div>
 
                 <p class="forgot"><a href="#">Forgot Password?</a></p>

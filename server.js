@@ -8,11 +8,19 @@ const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
+const cookieSession = require('cookie-session')
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['compile'],
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -40,15 +48,43 @@ app.use("/api/users", usersRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  const templateVars = {
+    username: null
+  }
+  if (req.session.username) {
+    templateVars.username = req.session.username;
+  }
+  res.render("index", templateVars);
 });
 // Login Page
 app.get("/login", (req, res) => {
-  res.render("login");
+  const templateVars = {
+    username: null
+  }
+  if (req.session.username) {
+    templateVars.username = req.session.username;
+  }
+  res.render("login", templateVars);
 });
+app.post("/login", (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  req.session.username = username;
+  res.redirect("/");
+})
+app.get("/logout", (req, res) => {
+  delete (req.session.username);
+  res.redirect("/");
+})
 // Profile Page
 app.get("/profile", (req, res) => {
-  res.render("profile");
+  const templateVars = {
+    username: null
+  }
+  if (req.session.username) {
+    templateVars.username = req.session.username;
+  }
+  res.render("profile", templateVars);
 })
 
 app.listen(PORT, () => {
