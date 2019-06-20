@@ -24,7 +24,9 @@ app.use(cookieSession({
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
-
+///
+const dataHelpers = require("./dataHelpers/zomatoProcessor");
+const addTodoRoutes = require("./routes/todos")(dataHelpers);
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -45,6 +47,8 @@ app.use(express.static("public"));
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
+///add todoroutes
+app.use("/todos", addTodoRoutes);
 
 // Home page
 app.get("/", (req, res) => {
@@ -56,6 +60,11 @@ app.get("/", (req, res) => {
   }
   res.render("index", templateVars);
 });
+///FOR POSTING AND GETTING TODOS
+// app.post("/todos", (req, res) => {
+//   res.redirect("/todos");
+// });
+
 // Login Page
 app.get("/login", (req, res) => {
   const templateVars = {
