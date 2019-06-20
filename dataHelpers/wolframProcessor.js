@@ -15,17 +15,18 @@ waApi.getFull({
   }).then((queryresult) => {
     let allResults = [];
     if(queryresult.success) {
-        console.log(queryresult)
-        queryresult.assumptions.values.forEach(element => {
-            console.log('checking - ', element.name);
-            if (element.name === 'Book' || element.name === 'Movie') {
-                allResults.push(element.name);    
+        const resultString = queryresult.datatypes;
+        const resultArray = resultString.split(',');
+       resultArray.forEach(element => {
+            // console.log('checking - ', element); // Check its working correctly
+            if (element === 'Book' || element === 'Movie' || element === 'TelevisionProgram') {
+                allResults.push(element);    
             }
         });
         if (allResults.length < 1) {
             allResults = false;
         }
-        console.log(allResults);
+        console.log('Returning:', allResults);
         return allResults;
     } else {
         console.log('No match found');
