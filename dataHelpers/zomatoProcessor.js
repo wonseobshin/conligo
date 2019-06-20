@@ -4,29 +4,34 @@ const apiKey = process.env.zomatoAPI2;
 const https = require('https');
 const query = process.argv.slice(2).toString().split(' ').join('%20');
 
-https.get("https://developers.zomato.com/api/v2.1/search?q="+query, (res) => {
+https.get(`https://developers.zomato.com/api/v2.1/search?q=${query}&lat=49.2811&lon=-123.1149&radius=100000&apikey=${apiKey}`, (res) => {
   let data = '';
   console.log('seaching for:', query);
-  console.log('url: ', "https://developers.zomato.com/api/v2.1/search?q="+query);
-  console.log('statusCode:', res.statusCode);
 
- res.on('data', (d) => {
-    process.stdout.write(d);
+  // res.on('data', (d) => {
+  //   process.stdout.write(JSON.parse(d));
+  // });
+
+  res.on('data', (chunk) => {
+    // console.log(chunk);
+    data += chunk;
   });
 
-  // res.on('data', (chunk) => {
-  //   console.log(chunk);
-  //   data += chunk;
-  // });
-
-  // res.on('end', () => {
-  //   console.log("search complete!");
-  //   console.log(data);
-  // });
+  res.on('end', () => {
+    console.log("search complete!");
+    if(JSON.parse(data).results_found !== 0 && JSON.parse(data).results_found !== undefined){
+      console.log(`
+        found!
+        `);
+    } else {
+      console.log('not found!');
+    }
+  });
 
 }).on("error", (err) => {
   console.log('error: ',err);
 });
+
 
 
 /*
