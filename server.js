@@ -57,8 +57,11 @@ app.get("/", (req, res) => {
   }
   if (req.session.username) {
     templateVars.username = req.session.username;
+    res.render("index", templateVars);
+    return;
+  } else {
+    res.redirect("/login");
   }
-  res.render("index", templateVars);
 });
 ///FOR POSTING AND GETTING TODOS
 // app.post("/todos", (req, res) => {
