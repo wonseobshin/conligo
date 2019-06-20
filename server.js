@@ -53,8 +53,11 @@ app.get("/", (req, res) => {
   }
   if (req.session.username) {
     templateVars.username = req.session.username;
+    res.render("index", templateVars);
+    return;
+  } else {
+    res.redirect("/login");
   }
-  res.render("index", templateVars);
 });
 // Login Page
 app.get("/login", (req, res) => {
