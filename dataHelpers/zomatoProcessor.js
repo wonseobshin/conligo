@@ -1,6 +1,36 @@
 require('dotenv').config();
-const apiKey = process.env.zomatoAPI;
+const apiKey = process.env.zomatoAPI2;
 
+const https = require('https');
+const query = process.argv.slice(2).toString().split(' ').join('%20');
+
+https.get("https://developers.zomato.com/api/v2.1/search?q="+query, (res) => {
+  let data = '';
+  console.log('seaching for:', query);
+  console.log('url: ', "https://developers.zomato.com/api/v2.1/search?q="+query);
+  console.log('statusCode:', res.statusCode);
+
+ res.on('data', (d) => {
+    process.stdout.write(d);
+  });
+
+  // res.on('data', (chunk) => {
+  //   console.log(chunk);
+  //   data += chunk;
+  // });
+
+  // res.on('end', () => {
+  //   console.log("search complete!");
+  //   console.log(data);
+  // });
+
+}).on("error", (err) => {
+  console.log('error: ',err);
+});
+
+
+/*
+//////// couldnt get routes to work //////////
 // const express = require('express');
 // const router  = express.Router();
 
@@ -21,33 +51,5 @@ module.exports = () => {
     }
   }
 }
-
-// router.get("https://developers.zomato.com/api/v2.1/search?q="+query, (req,res) => {
-
-// })
-/*waApi.getFull({
-    input: wolfSearch,
-    format: 'plaintext',
-    output: 'json'
-  }).then((queryresult) => {
-    let allResults = [];
-    if(queryresult.success) {
-        const resultString = queryresult.datatypes;
-        const resultArray = resultString.split(',');
-       resultArray.forEach(element => {
-            console.log('checking - ', element); // Check its working correctly
-            if (element === 'Book' || element === 'Movie' || element === 'TelevisionProgram') {
-                allResults.push(element);
-            }
-        });
-        if (allResults.length < 1) {
-            allResults = false;
-        }
-        console.log('Returning:', allResults);
-        return allResults;
-    } else {
-        console.log('No match found');
-        return false;
-    }
-  }).catch(console.error)
 */
+
