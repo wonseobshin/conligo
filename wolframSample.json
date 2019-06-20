@@ -1,0 +1,37 @@
+{
+    "queryresult": {
+        "success": true,
+        "error": false,
+        "numpods": 0,
+        "datatypes": "",
+        "timedout": "",
+        "timedoutpods": "",
+        "timing": 0.255,
+        "parsetiming": 0.108,
+        "parsetimedout": false,
+        "recalculate": "",
+        "id": "MSPa16321daidi9264bd2597000018cg800ddi75b4ad",
+        "host": "http://www3.wolframalpha.com",
+        "server": "36",
+        "related": "http://www3.wolframalpha.com/api/v2/relatedQueries.jsp?id=MSPa16331daidi9264bd259700000f14bb6d4g5i5e227531671773073605895",
+        "version": "2.6",
+        "assumptions": {
+            "type": "Clash",
+            "word": "Hobbit",
+            "template": "Assuming \"${word}\" is ${desc1}. Use as ${desc2} instead",
+            "count": 2,
+            "values": [
+                {
+                    "name": "Book",
+                    "desc": "a book",
+                    "input": "*C.Hobbit-_*Book-"
+                },
+                {
+                    "name": "Movie",
+                    "desc": "a movie",
+                    "input": "*C.Hobbit-_*Movie-"
+                }
+            ]
+        }
+    }
+}
