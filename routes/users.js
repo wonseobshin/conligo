@@ -34,7 +34,7 @@ module.exports = (knex) => {
         .then((result) => {
           knex('todos')
             .insert([{ name: req.body.name }, { category: req.body.category }, { user_id: user }])
-          console.log(result)
+          console.log('added...')
           });
 
     }
