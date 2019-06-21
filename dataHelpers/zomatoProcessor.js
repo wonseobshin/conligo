@@ -17,7 +17,8 @@ module.exports = (zomatoSearch) => {
         console.log("search complete!");
         const result = JSON.parse(data);
 
-        if (result.results_found !== 0 && result.results_found !== undefined) {
+        if (result.results_found !== 0 && result.results_found
+ !== undefined) {
           result.restaurants.forEach((element) => {
             console.log("FOUND! I'm now searching for name matches...");
             console.log(element.restaurant.name.toLowerCase().split('\'').join(''));
