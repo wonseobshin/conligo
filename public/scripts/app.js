@@ -43,12 +43,6 @@ $(document).ready(function () {
   $(".todo-title").click(function () {
     var $thisTodoList = $(this).siblings();
 
-
-    // $(this).parent().parent().css("order", "-1");
-    // $(this).parent().parent().siblings().css("order", "0");
-    // $(this).parent().css("order", "-1");
-    // $(this).parent().siblings().css("order", "0");
-
     const currentList = this.parentNode.childNodes[3].id;
     console.log(currentList)
     $(".todo-list").each(function (index, someList) {
