@@ -9,3 +9,16 @@
 <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
 <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+<script>
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("nav-bar").style.top = "0";
+  } else {
+    document.getElementById("nav-bar").style.top = "-100px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+
+</script>
