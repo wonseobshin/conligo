@@ -51,4 +51,11 @@ $(document).ready(function() {
     $(this).parent().siblings().css("order", "0");
 
   });
+
+  $('.todo-input').keydown(function(event) {
+    if (event.which == 13) {
+      this.form.submit();
+      event.preventDefault();
+    }
+  });
 });

@@ -1,12 +1,12 @@
 const wolf = require('./wolframProcessor');
 const zomato = require('./zomatoProcessor');
 module.exports = (knex) => {
-   
+
 
 
     return (
         {
-            newtodo: function (searchQuery, user) {
+            newtodo: function (searchQuery, user, cb) {
                 let category = '';
                 wolf(searchQuery).then(function (result) {
                     if (result) {
@@ -31,7 +31,6 @@ module.exports = (knex) => {
                         return category;
                     }
                 }).then(() => {
-                    console.log(category);
                     const newTodoObj = {
                         name: searchQuery,
                         category: category
@@ -46,7 +45,7 @@ module.exports = (knex) => {
                                 .catch((err) => {
                                     console.log(result, err)
 
-                                })
+                                }).then(cb)
                         });
                 })
             }
