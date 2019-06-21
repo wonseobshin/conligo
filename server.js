@@ -2,18 +2,18 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || "development";
 const express = require("express");
 const bodyParser = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const sass = require("node-sass-middleware");
+const app = express();
 const cookieSession = require('cookie-session')
 
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
-const morgan      = require('morgan');
-const knexLogger  = require('knex-logger');
+const knexConfig = require("./knexfile");
+const knex = require("knex")(knexConfig[ENV]);
+const morgan = require('morgan');
+const knexLogger = require('knex-logger');
 
 
 app.use(cookieSession({
@@ -98,7 +98,7 @@ app.post("/register", (req, res) => {
 })
 
 app.get("/logout", (req, res) => {
-  delete (req.session.username);
+  delete(req.session.username);
   res.redirect("/");
 })
 // Profile Page
@@ -112,14 +112,14 @@ app.get("/profile", (req, res) => {
   res.render("profile", templateVars);
 })
 
-app.post("/todos", (req,res) => {
-  if (req.body.todo.length === 0 || req.body.todo.length > 40){
+app.post("/todos", (req, res) => {
+  if (req.body.todo.length === 0 || req.body.todo.length > 40) {
     res.redirect("/");
     return;
   }
-  dataHelpers.newtodo(req.body.todo,req.session.username, () => {
+  dataHelpers.newtodo(req.body.todo, req.session.username, () => {
 
-  (res.redirect("/"));
+    (res.redirect("/"));
   })
 })
 app.listen(PORT, () => {
