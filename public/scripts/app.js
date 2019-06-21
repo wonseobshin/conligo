@@ -28,36 +28,37 @@ function generateItem(category, name, id) {
 }
 
 
-$(document).ready(function () {
+$(document).ready(function() {
 
   // fill todo lists
   $.ajax({
     method: "GET",
     url: "/api/users"
-  }).done(function (todos) {
+  }).done(function(todos) {
     for (var todo of todos) {
       generateItem(todo.category, todo.name, todo.id);
     }
   });
 
-  $(".todo-title").click(function () {
-    var $thisTodoList = $(this).siblings();
+  console.log("here")
+  $(".todo-title").click(function() {
+    if ($(window).innerWidth() <= 430) {
+      var $thisTodoList = $(this).siblings();
+      var $currentList = $(this).parent().children(".todo-list").id;
 
-    const currentList = this.parentNode.childNodes[3].id;
-    console.log(currentList)
-    $(".todo-list").each(function (index, someList) {
-      console.log(someList.id);
-      if (someList.id !== currentList) {
-        $(this).slideUp(1000)
-      }
-    })
-    setTimeout(() => {
-      $thisTodoList.slideDown(1000);
-    }, 1200)   
-
+      $(".todo-list").each(function(index, someList) {
+        console.log(someList.id);
+        if (someList.id !== $currentList) {
+          $(this).slideUp(300)
+        }
+      })
+      setTimeout(() => {
+        $thisTodoList.slideDown(300);
+      }, 400)
+    }
   });
 
-  $('.todo-input').keydown(function (event) {
+  $('.todo-input').keydown(function(event) {
     if (event.which == 13) {
       this.form.submit();
       event.preventDefault();
