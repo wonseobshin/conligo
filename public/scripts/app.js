@@ -1,8 +1,7 @@
-
 function generateItem(category, name, id) {
   let list = '';
   switch (category) {
-    case "Movies":
+    case "Movie":
       list = "#list-movies"
       break;
     case "TelevisionProgram":
@@ -27,13 +26,13 @@ function generateItem(category, name, id) {
 }
 
 
-$(document).ready(function () {
+$(document).ready(function() {
 
   // fill todo lists
   $.ajax({
     method: "GET",
     url: "/api/users"
-  }).done(function (todos) {
+  }).done(function(todos) {
     for (var todo of todos) {
       generateItem(todo.category, todo.name, todo.id);
     }
