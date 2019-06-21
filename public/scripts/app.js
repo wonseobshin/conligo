@@ -41,9 +41,9 @@ $(document).ready(function() {
   });
 
   $(".todo-title").click(function() {
-    $todoTitle = $(".todo-title");
-    $thisTodoList = $(this).siblings();
-    $thisTodoList.css("display", "flex");
+    var $todoTitle = $(".todo-title");
+    var $thisTodoList = $(this).siblings();
+    var $thisTodoList.css("display", "flex");
 
     $(this).parent().parent().css("order", "-1");
     $(this).parent().parent().siblings().css("order", "0");
