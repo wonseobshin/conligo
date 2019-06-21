@@ -115,7 +115,7 @@ app.get("/profile", (req, res) => {
 app.post("/todos", (req,res) => {
   dataHelpers.newtodo(req.body.todo,req.session.username);
   res.redirect("/");
-}) 
+})
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
