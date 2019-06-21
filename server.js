@@ -25,8 +25,9 @@ app.use(cookieSession({
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 ///
-const dataHelpers = require("./dataHelpers/zomatoProcessor");
-const addTodoRoutes = require("./routes/todos")(dataHelpers);
+const dataHelpers = require("./dataHelpers/apiCalls")(knex);
+// const addTodoRoutes = require("./routes/todos")(dataHelpers);
+
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -47,8 +48,6 @@ app.use(express.static("public"));
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
-///add todoroutes
-app.use("/todos", addTodoRoutes);
 
 // Home page
 app.get("/", (req, res) => {
@@ -84,6 +83,20 @@ app.post("/login", (req, res) => {
   req.session.username = username;
   res.redirect("/");
 })
+app.post("/register", (req, res) => {
+  const username = req.body.username;
+  const userData = {
+    username: username,
+    password: req.body.password,
+    firstName: req.body.username,
+    lastName: req.body.lName,
+    email: req.body.email
+  }
+
+  req.session.username = username;
+  res.redirect("/");
+})
+
 app.get("/logout", (req, res) => {
   delete (req.session.username);
   res.redirect("/");
@@ -99,6 +112,10 @@ app.get("/profile", (req, res) => {
   res.render("profile", templateVars);
 })
 
+app.post("/todos", (req,res) => {
+  dataHelpers.newtodo(req.body.todo,req.session.username);
+  res.redirect("/");
+}) 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
