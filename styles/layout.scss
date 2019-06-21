@@ -212,6 +212,12 @@ textarea {
     padding: 5px;
     text-align: center;
 
+    textarea {
+      height: 2.5em;
+      text-align: center;
+      background-color: $form-bg;
+    }
+
     button {
       margin-top: 5px;
     }

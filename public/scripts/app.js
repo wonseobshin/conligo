@@ -2,15 +2,17 @@ function generateItem(category, name, id) {
   let list = '';
   switch (category) {
     case "Movie":
-      list = "#list-movies"
-      break;
+    case "Movies":
     case "TelevisionProgram":
+    case "TelevisionPrograms":
       list = "#list-movies"
       break;
     case "Book":
+    case "Books":
       list = "#list-books"
       break;
     case "Restaurant":
+    case "Restaurants":
       list = "#list-restaurants"
       break;
     default:
@@ -26,16 +28,22 @@ function generateItem(category, name, id) {
 }
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
   // fill todo lists
   $.ajax({
     method: "GET",
     url: "/api/users"
-  }).done(function(todos) {
+  }).done(function (todos) {
     for (var todo of todos) {
       generateItem(todo.category, todo.name, todo.id);
     }
   });
 
+  $('.todo-input').keydown(function(event) {
+    if (event.which == 13) {
+        this.form.submit();
+        event.preventDefault();
+     }
+});
 });
