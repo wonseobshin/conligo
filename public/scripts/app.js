@@ -28,31 +28,42 @@ function generateItem(category, name, id) {
 }
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
   // fill todo lists
   $.ajax({
     method: "GET",
     url: "/api/users"
-  }).done(function(todos) {
+  }).done(function (todos) {
     for (var todo of todos) {
       generateItem(todo.category, todo.name, todo.id);
     }
   });
 
-  $(".todo-title").click(function() {
-    var $todoTitle = $(".todo-title");
+  $(".todo-title").click(function () {
     var $thisTodoList = $(this).siblings();
-    var $thisTodoList.css("display", "flex");
 
-    $(this).parent().parent().css("order", "-1");
-    $(this).parent().parent().siblings().css("order", "0");
-    $(this).parent().css("order", "-1");
-    $(this).parent().siblings().css("order", "0");
+
+    // $(this).parent().parent().css("order", "-1");
+    // $(this).parent().parent().siblings().css("order", "0");
+    // $(this).parent().css("order", "-1");
+    // $(this).parent().siblings().css("order", "0");
+
+    const currentList = this.parentNode.childNodes[3].id;
+    console.log(currentList)
+    $(".todo-list").each(function (index, someList) {
+      console.log(someList.id);
+      if (someList.id !== currentList) {
+        $(this).slideUp(1000)
+      }
+    })
+    setTimeout(() => {
+      $thisTodoList.slideDown(1000);
+    }, 1200)   
 
   });
 
-  $('.todo-input').keydown(function(event) {
+  $('.todo-input').keydown(function (event) {
     if (event.which == 13) {
       this.form.submit();
       event.preventDefault();
