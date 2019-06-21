@@ -1,47 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <% include ./partials/_header %>
-    <% include ./partials/_navbar %>
-    <title>Conligo - Home</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<head>
+  <meta charset="utf-8">
+  <% include ./partials/_header %>
+  <% include ./partials/_navbar %>
+  <title>Conligo - Home</title>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-  <body>
-    <h1>Welcome Back!</h1>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
 
-    <% if (username) { %>
-      Welcome Back <%= username %>
-    <% } %>
-      <section class="flex-container">
-        <form id="new_todo" method="POST" action="/todos">
-          <textarea class="form-control" name="todo"></textarea>
-          <button class="btn btn-secondary" type="submit">ADD</button>
-        </form>
-      </section>
-      <section class="flex-container">
-        <div class="flex-inner">
-          <div class="todo-list" id="movies">
+<body>
+  <h1>Welcome Back!</h1>
 
-          </div>
-          <div class="todo-list" id="books">
-
-          </div>
+  <% if (username) { %>
+  Welcome Back <%= username %>
+  <% } %>
+  <section class="flex-container">
+    <form id="new_todo" method="POST" action="/todos">
+      <textarea class="form-control" name="todo"></textarea>
+      <button class="btn btn-secondary" type="submit">ADD</button>
+    </form>
+  </section>
+  <section class="flex-container">
+    <div class="flex-inner">
+      <div class="todo-container">
+        <div class="todo-title" id="title-movies">
+          Films/Series
         </div>
-        <div class="flex-inner">
-          <div class="todo-list" id="restaurants">
-
-          </div>
-          <div class="todo-list" id="products">
-          </div>
+        <div class="todo-list" id="list-movies">
+          
         </div>
-      </section>
-  </body>
+      </div>
+      <div class="todo-container">
+        <div class="todo-title" id="title-books">
+          Books
+        </div>
+        <div class="todo-list" id="list-books">
+        
+        </div>
+      </div>
+    </div>
+    <div class="flex-inner">
+      <div class="todo-container">
+        <div class="todo-title" id="title-restaurants">
+          Restaurants
+        </div>
+        <div class="todo-list" id="list-restaurants">
+          
+        </div>
+      </div>
+      <div class="todo-container">
+        <div class="todo-title" id="title-products">
+          Products
+        </div>
+        <div class="todo-list" id="list-products">
+        
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
 </html>

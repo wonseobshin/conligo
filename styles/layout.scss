@@ -226,15 +226,40 @@ textarea {
   flex-wrap: wrap;
 }
 
-.todo-list{
-  padding: 10px;
+.todo-container{
   flex-grow: 1;
+  flex-basis: 0;
   margin: 8px;
   min-width: 200px;
   max-width: 400px;
   min-height: 400px;
   border: 4px ridge $main-light;
   border-radius: 10px;
+  text-align: center;
+
+  .todo-title {
+    background-color: $main;
+    color: $gray;
+    padding: 5px 0 5px 0;
+    font-weight: $bold;
+    font-size: 1.75em;
+    margin-bottom: 2px;
+  }
+
+  .todo-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    width: 100%;
+
+    .list-item {
+      border-style: ridge;
+      border-width: 2px;
+      border-radius: 5px;
+      border-color: $main;
+      margin: 2px 4px 2px 4px;
+    }
+  }
 }
 
 @media (max-width: 435px) {
@@ -242,7 +267,3 @@ textarea {
     color: green;
   }
 }
-/*#products {
-  max-width: 250px;
-}*/
-
