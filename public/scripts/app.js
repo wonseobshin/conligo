@@ -2,15 +2,17 @@ function generateItem(category, name, id) {
   let list = '';
   switch (category) {
     case "Movie":
-      list = "#list-movies"
-      break;
+    case "Movies":
     case "TelevisionProgram":
+    case "TelevisionPrograms":
       list = "#list-movies"
       break;
     case "Book":
+    case "Books":
       list = "#list-books"
       break;
     case "Restaurant":
+    case "Restaurants":
       list = "#list-restaurants"
       break;
     default:
@@ -38,4 +40,15 @@ $(document).ready(function() {
     }
   });
 
+  $(".todo-title").click(function() {
+    $todoTitle = $(".todo-title");
+    $thisTodoList = $(this).siblings();
+    $thisTodoList.css("display", "flex");
+
+    $(this).parent().parent().css("order", "-1");
+    $(this).parent().parent().siblings().css("order", "0");
+    $(this).parent().css("order", "-1");
+    $(this).parent().siblings().css("order", "0");
+
+  });
 });
