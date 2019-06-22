@@ -51,25 +51,60 @@ module.exports = (knex) => {
   });
 
   // User profiles
-  router.post("/profile/:username/changename", (req, res) => {
+  router.post("/profile/:username/editprofile", (req, res) => {
     const username = req.session.username;
-    const newUsername = req.body.newUsername;
+    let newUsername = false;
+    let newProfilePic = false;
+    if (req.body.newUsername) {
+      newUsername = req.body.newUsername;
+    }
+    if (req.body.newProfilePic) {
+      newProfilePic = req.body.newProfilePic;
+    }
+    if (newUsername && newProfilePic) {
+      knex
+      knex('users')
+        .where({ username: username })
+        .update({ username: newUsername })
+        .update({ profile_pic: newProfilePic })
+        .then(() => {
+          res.redirect("/profile")
+        });
+    }
+    if (newUsername) {
+      knex
+      knex('users')
+        .where({ username: username })
+        .update({ username: newUsername })
+        .then(() => {
+          res.redirect("/profile")
+        });
+    }
+    if (newProfilePic) {
+      knex
+      knex('users')
+        .where({ username: username })
+        .update({ profile_pic: newProfilePic })
+        .then(() => {
+          res.redirect("/profile")
+        });
+    }
+  })
 
-  });
-  router.post("/profile/:username/personalise", (req, res) => {
+    router.post("/profile/:username/personalise", (req, res) => {
     const username = req.session.username;
 
   })
 
-router.post("/profile/:username/delete", (req, res) => {
-  const username = req.session.username;
-  if (req.body.deleteRequest === "Delete Account") {
-    console.log(username, 'attemted to delete their account!')
-    res.status(423).send("SECURITY ALERT: Action Blocked - Please try again in 24 hours");
-    return;
-  }
-  res.status(406).send('ERROR: You must enter "Delete Account" in the text box to delete your account')
-})
+    router.post("/profile/:username/delete", (req, res) => {
+    const username = req.session.username;
+    if (req.body.deleteRequest === "Delete Account") {
+      console.log(username, 'attemted to delete their account!')
+      res.status(423).send("SECURITY ALERT: Action Blocked - Please try again in 24 hours");
+      return;
+    }
+    res.status(406).send('ERROR: You must enter "Delete Account" in the text box to delete your account')
+  })
 
-return router;
+    return router;
 }

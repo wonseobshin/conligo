@@ -48,7 +48,17 @@ module.exports = (knex) => {
                                 }).then(cb)
                         });
                 })
+            },
+            getProfilePic: function (user, cb) {
+                knex
+                .select("profile_pic")
+                .from("users")
+                .where("username", user)
+                .then((results) => {
+                    cb(results[0].profile_pic);
+                })
             }
+
         }
     )
 }

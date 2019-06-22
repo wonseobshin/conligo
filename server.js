@@ -52,11 +52,18 @@ app.use("/api/users", usersRoutes(knex));
 // Home page
 app.get("/", (req, res) => {
   const templateVars = {
-    username: null
+    username: null,
+    profilePic: "/images/dp.png"
   }
   if (req.session.username) {
     templateVars.username = req.session.username;
-    res.render("index", templateVars);
+    dataHelpers.getProfilePic(req.session.username, (result) => {
+      if (result) {
+        templateVars.profilePic = result;
+      }
+      console.log(templateVars)
+      res.render("index", templateVars);
+    });
     return;
   } else {
     res.redirect("/login");
@@ -70,7 +77,8 @@ app.get("/", (req, res) => {
 // Login Page
 app.get("/login", (req, res) => {
   const templateVars = {
-    username: null
+    username: null,
+    profilePic: "/images/dp.png"
   }
   if (req.session.username) {
     templateVars.username = req.session.username;
@@ -104,7 +112,8 @@ app.get("/logout", (req, res) => {
 // Profile Page
 app.get("/profile", (req, res) => {
   const templateVars = {
-    username: null
+    username: null,
+    profilePic: "/images/dp.png"
   }
   if (req.session.username) {
     templateVars.username = req.session.username;
