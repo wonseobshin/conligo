@@ -65,3 +65,28 @@ $(document).ready(function() {
     }
   });
 });
+
+$(window).on("load", function() {
+  $("#scroll3").mCustomScrollbar({
+    scrollButtons: {
+      enable: true
+    },
+    theme: "dark-thin",
+    scrollbarPosition: "outside",
+    autoHideScrollbar: false,
+    alwaysShowScrollbar: 2
+  });
+});
+// $(function() {
+//   $(window).on("load", function() {
+//     $("#scroll3").mCustomScrollbar({
+//       scrollButtons: {
+//         enable: true
+//       },
+//       theme: "dark-thin",
+//       scrollbarPosition: "outside",
+//       autoHideScrollbar: false,
+//       alwaysShowScrollbar: 2
+//     });
+//   });
+// });

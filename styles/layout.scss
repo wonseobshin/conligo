@@ -252,11 +252,15 @@ textarea {
   min-width: 200px;
   max-width: 400px;
   min-height: 400px;
+  max-height: 400px;
+  overflow-y: auto;
   border: 4px ridge $main-light;
   border-radius: 10px;
   text-align: center;
 
   .todo-title {
+    position: sticky;
+    top: 0;
     background-color: $main;
     color: $gray;
     padding: 5px 0 5px 0;
@@ -302,4 +306,26 @@ textarea {
       }
     }
   }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  display: none;
+  ;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
