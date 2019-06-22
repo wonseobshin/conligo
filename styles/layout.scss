@@ -263,6 +263,8 @@ textarea {
   border: 4px ridge $main-light;
   border-radius: 10px;
   text-align: center;
+  background-color: $body-bg;
+  opacity: .85;
 
   .todo-title {
     position: sticky;
@@ -315,6 +317,9 @@ textarea {
     }
   }
 }
+button {
+  opacity: .9;
+}
 
 @media (max-width: 435px) {
   body {
@@ -362,4 +367,5 @@ textarea {
 }
 
 
-@import "profile.scss"
+@import "profile.scss";
+@import "nav.scss";

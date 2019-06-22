@@ -10,8 +10,11 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/user.js"></script>
 </head>
-
+<% if(background) { %>
+  <body style="background-image:url(<%= background %>); background-size: 100%">
+   <% } else { %>
 <body>
+  <% } %>
   <div class="form">
     <div class="profile-page">
 

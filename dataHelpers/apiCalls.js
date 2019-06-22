@@ -49,15 +49,15 @@ module.exports = (knex) => {
                         });
                 })
             },
-            getProfilePic: function (user, cb) {
+            getImages: function (user, cb) {
                 knex
-                .select("profile_pic")
+                .select("profile_pic", "background_pic")
                 .from("users")
                 .where("username", user)
                 .then((results) => {
-                    cb(results[0].profile_pic);
+                    cb(results[0]);
                 })
-            }
+            },
 
         }
     )

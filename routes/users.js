@@ -91,12 +91,21 @@ module.exports = (knex) => {
     }
   })
 
-    router.post("/profile/:username/personalise", (req, res) => {
+  router.post("/profile/:username/personalise", (req, res) => {
     const username = req.session.username;
+    let newBackground = req.body.newBackground;
+    console.log(newBackground)
+    knex
+    knex('users')
+      .where({ username: username })
+      .update({ background_pic: newBackground })
+      .then(() => {
+        res.redirect("/profile")
+      });
 
   })
 
-    router.post("/profile/:username/delete", (req, res) => {
+  router.post("/profile/:username/delete", (req, res) => {
     const username = req.session.username;
     if (req.body.deleteRequest === "Delete Account") {
       console.log(username, 'attemted to delete their account!')
@@ -106,5 +115,5 @@ module.exports = (knex) => {
     res.status(406).send('ERROR: You must enter "Delete Account" in the text box to delete your account')
   })
 
-    return router;
+  return router;
 }

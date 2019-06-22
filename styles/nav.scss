@@ -1,5 +1,5 @@
 #nav-bar {
-  background-color: grey;
+  background-color: $form-bg;
   height: 70pt;
   display: flex;
   justify-content: space-between;
@@ -9,6 +9,7 @@
   top: 0px;
   z-index: 0;
   transition: top 0.5s;
+  opacity: .8;
 
   h1 {
     margin: 0;

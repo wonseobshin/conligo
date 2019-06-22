@@ -26,7 +26,6 @@ app.use(cookieSession({
 const usersRoutes = require("./routes/users");
 ///
 const dataHelpers = require("./dataHelpers/apiCalls")(knex);
-// const addTodoRoutes = require("./routes/todos")(dataHelpers);
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -35,6 +34,10 @@ app.use(morgan('dev'));
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
+
+function getImages(username, callback) {
+  dataHelpers.getImages(username, callback)
+}
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -57,17 +60,19 @@ app.get("/", (req, res) => {
   }
   if (req.session.username) {
     templateVars.username = req.session.username;
-    dataHelpers.getProfilePic(req.session.username, (result) => {
-      if (result) {
-        templateVars.profilePic = result;
+    getImages(req.session.username, (images) => {
+      if (images.profile_pic) {
+        templateVars.profilePic = images.profile_pic;
       }
-      console.log(templateVars)
+      if (images.background_pic) {
+        templateVars.background = images.background_pic;
+      }
       res.render("index", templateVars);
     });
     return;
-  } else {
-    res.redirect("/login");
   }
+  res.redirect("/login");
+
 });
 ///FOR POSTING AND GETTING TODOS
 // app.post("/todos", (req, res) => {
@@ -82,6 +87,16 @@ app.get("/login", (req, res) => {
   }
   if (req.session.username) {
     templateVars.username = req.session.username;
+    getImages(req.session.username, (images) => {
+      if (images.profile_pic) {
+        templateVars.profilePic = images.profile_pic;
+      }
+      if (images.background_pic) {
+        templateVars.background = images.background_pic;
+      }
+      res.render("index", templateVars);
+    });
+    return;
   }
   res.render("login", templateVars);
 });
@@ -106,7 +121,7 @@ app.post("/register", (req, res) => {
 })
 
 app.get("/logout", (req, res) => {
-  delete(req.session.username);
+  delete (req.session.username);
   res.redirect("/");
 })
 // Profile Page
@@ -117,7 +132,16 @@ app.get("/profile", (req, res) => {
   }
   if (req.session.username) {
     templateVars.username = req.session.username;
-    res.render("profile", templateVars);
+    templateVars.username = req.session.username;
+    getImages(req.session.username, (images) => {
+      if (images.profile_pic) {
+        templateVars.profilePic = images.profile_pic;
+      }
+      if (images.background_pic) {
+        templateVars.background = images.background_pic;
+      }
+      res.render("profile", templateVars);
+    });
     return;
   }
   res.redirect("/");
