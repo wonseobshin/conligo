@@ -14,10 +14,8 @@
 </head>
 
 <body>
-  <h1>Welcome Back!</h1>
   <% if (username) { %>
-  Welcome Back
-  <%= username %>
+  <h1>Welcome Back <%= username %>!</h1>
   <% } %>
   <section class="flex-container">
     <form id="new_todo" method="POST" action="/todos">

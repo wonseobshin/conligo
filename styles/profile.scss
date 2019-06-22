@@ -1,0 +1,20 @@
+.profile-page {
+  display: flex;
+  height: 100%;
+
+    h1 {
+        margin-top: 0;
+    }
+
+  .tab-group {
+    height: 100%;
+    width: 30%;
+    margin-right: 5vw;
+
+    a {
+      width: 100%;
+      float: none;
+    }
+
+  }
+}

@@ -108,8 +108,10 @@ app.get("/profile", (req, res) => {
   }
   if (req.session.username) {
     templateVars.username = req.session.username;
+    res.render("profile", templateVars);
+    return;
   }
-  res.render("profile", templateVars);
+  res.redirect("/");
 })
 
 app.post("/todos", (req, res) => {

@@ -1,17 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Profile</title>
-    <meta charset="utf-8">
-    <% include ./partials/_header %>
-    <% include ./partials/_navbar %>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
+<head>
+  <title>Profile</title>
+  <meta charset="utf-8">
+  <% include ./partials/_header %>
+  <% include ./partials/_navbar %>
 
-  <body>
-    <h1>This is the profile page</h1>
-    <p>Placeholder for later content</p>
-  </body>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/user.js"></script>
+</head>
+
+<body>
+  <div class="form">
+    <div class="profile-page">
+
+      <ul class="tab-group">
+        <li class="tab active"><a href="#profile">Profile</a></li>
+        <li class="tab"><a href="#account">Account</a></li>
+        <li class="tab"><a href="#personalise">Personalise</a></li>
+      </ul>
+
+      <div class="tab-content">
+
+        <div id="profile">
+          <h1><%= username %> </h1>
+
+          <form action="/api/users/profile/<%= username %>/changename" method="post">
+
+            <div class="field-wrap">
+              <label>
+                Change Username<span class="req"></span>
+              </label>
+              <input type="text" name="newUsername"  autocomplete="off" />
+            </div>
+
+            <div class="field-wrap">
+              <label>
+                New Profile Picture URL<span class="req"></span>
+              </label>
+              <input type="url" name="newProfilePic"  autocomplete="off" />
+            </div>
+
+
+            <button id="save-profile" class="button profile-button" />Save Changes</button>
+
+          </form>
+
+        </div>
+
+        <div id="account">
+          <h1>Delete Account?</h1>
+
+          <form action="/api/users/profile/<%= username %>/delete" method="post">
+            <div class="field-wrap">
+              <label>
+                Type "Delete Account"<span class="req">*</span>
+              </label>
+              <input type="text" name="deleteRequest" required autocomplete="off" />
+            </div>
+
+            <div class="field-wrap">
+              <label>
+                Enter Password<span class="req">*</span>
+              </label>
+              <input type="password" name="password" required autocomplete="off" />
+            </div>
+
+            <button type="submit" class="button profile-button" />Delete Account</button>
+
+          </form>
+
+        </div>
+        <div id="personalise">
+            <h1>Change Background</h1>
+  
+            <form action="/api/users/profile/<%= username %>/personalise" method="post">
+              <div class="field-wrap">
+                <label>
+                  New Background URL<span class="req">*</span>
+                </label>
+                <input type="url" name="newBackground" required autocomplete="off" />
+              </div>
+  
+  
+              <button type="submit" class="button profile-button" />Change</button>
+  
+            </form>
+  
+          </div>
+      </div><!-- tab-content -->
+    </div>
+  </div> <!-- /form -->
+</body>
+
 </html>

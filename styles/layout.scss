@@ -84,7 +84,7 @@ a {
   }
 }
 
-.tab-content>div:last-child {
+.tab-content>div:not(:first-child) {
   display: none;
 }
 
@@ -183,7 +183,6 @@ textarea {
   outline: none;
   border-radius: 0;
   padding: 15px 0;
-  font-size: 2rem;
   font-weight: $bold;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -197,10 +196,16 @@ textarea {
     background: $main-dark;
   }
 }
+.profile-button {
+  display: block;
+  width: 100%;
+  font-size: 1.5rem;
+}
 
 .button-block {
   display: block;
   width: 100%;
+  font-size: 2rem;
 }
 
 .forgot {
@@ -208,6 +213,7 @@ textarea {
   text-align: right;
 }
 
+// index page start
 .flex-container {
   display: flex;
   flex-direction: row;
@@ -354,3 +360,6 @@ textarea {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+
+@import "profile.scss"

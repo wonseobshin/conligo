@@ -85,7 +85,7 @@ $(document).ajaxStop(function () {
 
     $.ajax({
       method: "delete",
-      url: `/api/users/${$itemID}`,
+      url: `/api/users/item/${$itemID}`,
     })
   });
 })
