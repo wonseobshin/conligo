@@ -34,10 +34,23 @@ module.exports = (knex) => {
         .then((result) => {
           knex('todos')
             .insert([{ name: req.body.name }, { category: req.body.category }, { user_id: user }])
-          });
+        });
 
     }
   })
+
+  router.delete("/:itemID", (req) => {
+    const itemID = Number(req.params.itemID);
+    knex('todos')
+      .where('id', itemID)
+      .del()
+      .then(() => {
+    }).catch((error) => {
+        console.error(error);
+    })
+  });
+
+
 
   return router;
 }
