@@ -22,9 +22,17 @@ function generateItem(category, name, id) {
 
   $("<div>", {
     "class": 'list-item',
-    text: name,
     name: id
-  }).appendTo($(list))
+  }).append($("<img>", {
+    "class": 'delete-item',
+    src: '/images/delete.png'
+  })).append($("<b>", {
+    text: name
+  })).append($("<img>", {
+    "class": 'move-item',
+    src: '/images/move.png'
+  })).appendTo($(list))
+
 }
 
 
@@ -53,7 +61,7 @@ $(document).ready(function () {
     })
     setTimeout(() => {
       $thisTodoList.slideDown(1000);
-    }, 1200)   
+    }, 1200)
 
   });
 
@@ -63,4 +71,22 @@ $(document).ready(function () {
       event.preventDefault();
     }
   });
+
+
 });
+
+// After board is generated list items ae available, ALL calls to the list items after this point
+$(document).ajaxStop(function () {
+  $(".delete-item").click(function () {
+    var $itemID = $(this).parent()[0].attributes.name.value;
+    var $itemToRemove = $(this).parent()[0];
+    $($itemToRemove).css("border-style", "none");
+    $($itemToRemove).slideUp("slow");
+
+    $.ajax({
+      method: "delete",
+      url: `/api/users/${$itemID}`,
+    })
+  });
+})
+

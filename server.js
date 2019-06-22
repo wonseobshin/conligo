@@ -113,7 +113,7 @@ app.get("/profile", (req, res) => {
 })
 
 app.post("/todos", (req, res) => {
-  if (req.body.todo.length === 0 || req.body.todo.length > 40) {
+  if (req.body.todo.length < 2 || req.body.todo.length > 40) {
     res.redirect("/");
     return;
   }
