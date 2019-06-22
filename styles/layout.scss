@@ -214,6 +214,7 @@ textarea {
 }
 
 // index page start
+
 .flex-container {
   display: flex;
   flex-direction: row;
@@ -330,10 +331,6 @@ button {
 
       .todo-list {
         display: none;
-        /*   position: absolute;
-        top: -9999px;
-        left: 9999px;
-        */
 
         .clicked {
           display: flex;

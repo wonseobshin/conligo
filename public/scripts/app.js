@@ -69,6 +69,8 @@ $(document).ready(function() {
     if (event.which == 13) {
       this.form.submit();
       event.preventDefault();
+      $("#create-new-todo")
+      .html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Please Wait');
     }
   });
 

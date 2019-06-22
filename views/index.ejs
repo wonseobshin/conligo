@@ -13,53 +13,57 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 <% if(background) { %>
-  <body style="background-image:url(<%= background %>); background-size: 100%">
-   <% } else { %>
-<body>
-  <% } %>
-  <% if (username) { %>
-  <h1>Welcome Back <%= username %>!</h1>
-  <% } %>
-  <section class="flex-container">
-    <form id="new_todo" method="POST" action="/todos">
-      <textarea class="todo-input" name="todo"></textarea>
-      <button class="btn btn-secondary" type="submit">ADD</button>
-    </form>
-  </section>
-  <section class="flex-container">
-    <div class="flex-inner">
-      <div class="todo-container">
-        <div class="todo-title" id="title-movies">
-          Films/Series
+
+<body style="background-image:url(<%= background %>); background-size: 100%">
+  <% } else { %>
+
+  <body>
+    <% } %>
+    <% if (username) { %>
+    <h1>Welcome Back <%= username %>!</h1>
+    <% } %>
+    <section class="flex-container">
+      <form id="new_todo" method="POST" action="/todos">
+        <textarea class="todo-input" name="todo"></textarea>
+        <button class="btn btn-secondary" type="submit" id="create-new-todo">
+          ADD
+        </button>
+      </form>
+    </section>
+    <section class="flex-container">
+      <div class="flex-inner">
+        <div class="todo-container">
+          <div class="todo-title" id="title-movies">
+            Films/Series
+          </div>
+          <div class="todo-list" id="list-movies">
+          </div>
         </div>
-        <div class="todo-list" id="list-movies">
-        </div>
-      </div>
-      <div class="todo-container">
-        <div class="todo-title" id="title-books">
-          Books
-        </div>
-        <div class="todo-list" id="list-books">
-        </div>
-      </div>
-    </div>
-    <div class="flex-inner">
-      <div class="todo-container">
-        <div class="todo-title" id="title-restaurants">
-          Restaurants
-        </div>
-        <div class="todo-list mCustionScrollbar" id="list-restaurants">
+        <div class="todo-container">
+          <div class="todo-title" id="title-books">
+            Books
+          </div>
+          <div class="todo-list" id="list-books">
+          </div>
         </div>
       </div>
-      <div class="todo-container">
-        <div class="todo-title" id="title-products">
-          Products
+      <div class="flex-inner">
+        <div class="todo-container">
+          <div class="todo-title" id="title-restaurants">
+            Restaurants
+          </div>
+          <div class="todo-list mCustionScrollbar" id="list-restaurants">
+          </div>
         </div>
-        <div class="todo-list" id="list-products">
+        <div class="todo-container">
+          <div class="todo-title" id="title-products">
+            Products
+          </div>
+          <div class="todo-list" id="list-products">
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-</body>
+    </section>
+  </body>
 
 </html>
