@@ -21,7 +21,9 @@ function generateItem(category, name, id) {
 
 
   $("<div>", {
-    "class": 'list-item',
+    "class": 'list-item source',
+    ondragstart: "dragstart_handler(event);",
+    draggable: "true",
     name: id
   }).append($("<img>", {
     "class": 'delete-item',
@@ -74,35 +76,6 @@ $(document).ready(function() {
 
 });
 
-
-
-function dragstart_handler(event) {
-  /*  var img = new Image();
-    img.src = "/../images/todo.png";
-    event.dataTransfer.setDragImage(img, 0, 0);
-  */
-
-  // Add the target element's id to the data transfer object
-  event.dataTransfer.setData("text", event.target.id);
-  console.log("dragStart: ", event.dataTransfer);
-}
-
-function dragover_handler(event) {
-  event.preventDefault();
-  // Set the dropEffect to move
-  event.dataTransfer.dropEffect = "move"
-}
-
-function drop_handler(event) {
-  console.log("dropped")
-  event.preventDefault();
-  // Get the id of the target and add the moved element to the target's DOM
-  var data = event.dataTransfer.getData("text");
-  console.log("appending: ", document.getElementById(data));
-
-  event.target.appendChild(document.getElementById(data));
-}
-
 // After board is generated list items ae available, ALL calls to the list items after this point
 $(document).ajaxStop(function() {
   $(".delete-item").click(function() {
@@ -116,4 +89,5 @@ $(document).ajaxStop(function() {
       url: `/api/users/${$itemID}`,
     })
   });
+
 })
