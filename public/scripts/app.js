@@ -132,7 +132,20 @@ $(document).ajaxStop(function() {
       animation: 150,
       dragoverBubble: true,
       emptyInsertThreshold: 15,
-    });
+      onEnd: function(event) {
+        var itemID = event.item.attributes.name.value;
+        var newCategory = event.to.id.slice(5);
+        newCategory = newCategory.charAt(0).toUpperCase() + newCategory.slice(1);
+        $.ajax({
+          method: "put",
+          url: `/api/users/item/${itemID}`,
+          data: {
+            newCategory: newCategory
+          }
+        })
+
+      }
+    })
   });
 
   $(".delete-item").click(function() {
