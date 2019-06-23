@@ -36,25 +36,25 @@ function generateItem(category, name, id) {
 }
 
 
-$(document).ready(function () {
+$(document).ready(function() {
 
   // fill todo lists
   $.ajax({
     method: "GET",
     url: "/api/users"
-  }).done(function (todos) {
+  }).done(function(todos) {
     for (var todo of todos) {
       generateItem(todo.category, todo.name, todo.id);
     }
   });
 
 
-  $(".todo-title").click(function () {
+  $(".todo-title").click(function() {
     if ($(window).innerWidth() <= 430) {
       var $thisTodoList = $(this).siblings();
       var $currentList = $(this).parent().children(".todo-list").id;
 
-      $(".todo-list").each(function (index, someList) {
+      $(".todo-list").each(function(index, someList) {
         if (someList.id !== $currentList) {
           $(this).slideUp(300)
         }
@@ -65,7 +65,7 @@ $(document).ready(function () {
     }
   });
 
-  $('.todo-input').keydown(function (event) {
+  $('.todo-input').keydown(function(event) {
     if (event.which == 13) {
       this.form.submit();
       event.preventDefault();
@@ -73,7 +73,7 @@ $(document).ready(function () {
         .html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Please Wait');
     }
   });
-  $('#create-new-todo').click(function (event) {
+  $('#create-new-todo').click(function(event) {
     this.form.submit();
     event.preventDefault();
     $("#create-new-todo")
@@ -84,8 +84,18 @@ $(document).ready(function () {
 });
 
 // After board is generated list items ae available, ALL calls to the list items after this point
-$(document).ajaxStop(function () {
-  $(".delete-item").click(function () {
+$(document).ajaxStop(function() {
+  var categories = document.getElementsByClassName("todo-list");
+  Array.from(categories).forEach(function(element) {
+    var sortable = Sortable.create(element, {
+      group: "categories",
+      // animation: 150,
+    });
+  });
+
+  // var sortable = Sortable.create(document.getElementsByClassName("list-item"));
+
+  $(".delete-item").click(function() {
     var $itemID = $(this).parent()[0].attributes.name.value;
     var $itemToRemove = $(this).parent()[0];
     $($itemToRemove).css("border-style", "none");
@@ -97,4 +107,3 @@ $(document).ajaxStop(function () {
     })
   });
 })
-

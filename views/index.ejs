@@ -6,7 +6,8 @@
   <% include ./partials/_header %>
   <% include ./partials/_navbar %>
   <title>Conligo - Home</title>
-   <script type="text/javascript" src="/scripts/app.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 <% if(background) { %>
 
@@ -16,7 +17,8 @@
   <body>
     <% } %>
     <% if (username) { %>
-    <h1>Welcome Back <%= username %>!</h1>
+    <h1>Welcome Back
+      <%= username %>!</h1>
     <% } %>
     <section class="flex-container">
       <form id="new_todo" method="POST" action="/todos">
@@ -48,7 +50,7 @@
           <div class="todo-title" id="title-restaurants">
             Restaurants
           </div>
-          <div class="todo-list mCustionScrollbar" id="list-restaurants">
+          <div class="todo-list" id="list-restaurants">
           </div>
         </div>
         <div class="todo-container">
