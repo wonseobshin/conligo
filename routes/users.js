@@ -58,7 +58,7 @@ module.exports = (knex) => {
       .update({ category: newCategory})
       .then(() => {
         console.log(`${itemID} category changed to ${newCategory}`)
-        res.status(301);
+        res.status(202);
       })
   });
 
