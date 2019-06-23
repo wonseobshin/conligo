@@ -196,6 +196,7 @@ textarea {
     background: $main-dark;
   }
 }
+
 .profile-button {
   display: block;
   width: 100%;
@@ -264,7 +265,6 @@ textarea {
   border: 4px ridge $main-light;
   border-radius: 10px;
   text-align: center;
-  background-color: $body-bg;
   opacity: .85;
 
   .todo-title {
@@ -275,17 +275,19 @@ textarea {
     padding: 5px 0 5px 0;
     font-weight: $bold;
     font-size: 1.75em;
-    margin-bottom: 2px;
   }
 
   .todo-list {
     display: flex;
+    background-color: rgba(193, 189, 186, 0.5);
     flex-direction: column;
     justify-content: stretch;
     width: 100%;
+    height: 88%;
 
     .list-item {
       display: flex;
+      background-color: $body-bg;
       border-style: ridge;
       border-width: 2px;
       border-radius: 0px 5px 0px 5px;
@@ -302,22 +304,24 @@ textarea {
       }
 
       .move-item:hover {
-        opacity: 1;  
+        opacity: 1;
       }
 
       .delete-item:hover {
-        opacity: 1;  
+        opacity: 1;
       }
 
     }
-        .list-item:hover  {
 
-          img {
-            opacity: 0.3;
-          }
+    .list-item:hover {
+
+      img {
+        opacity: 0.3;
+      }
     }
   }
 }
+
 button {
   opacity: .9;
 }
