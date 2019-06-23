@@ -26,7 +26,7 @@ html {
 
 body {
   background: $body-bg;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: "Titillium Web", sans-serif;
 }
 
 a {
@@ -40,12 +40,12 @@ a {
 }
 
 .form {
-  background: rgba($form-bg, .9);
+  background: rgba($form-bg, 0.9);
   padding: 40px;
   max-width: 700px;
   margin: 40px auto;
   border-radius: $br;
-  box-shadow: 0 4px 10px 4px rgba($form-bg, .3);
+  box-shadow: 0 4px 10px 4px rgba($form-bg, 0.3);
 }
 
 .tab-group {
@@ -63,14 +63,14 @@ a {
     display: block;
     text-decoration: none;
     padding: 15px;
-    background: rgba($gray-light, .25);
+    background: rgba($gray-light, 0.25);
     color: $gray-light;
     font-size: 20px;
     float: left;
     width: 50%;
     text-align: center;
     cursor: pointer;
-    transition: .5s ease;
+    transition: 0.5s ease;
 
     &:hover {
       background: $main-dark;
@@ -84,10 +84,9 @@ a {
   }
 }
 
-.tab-content>div:not(:first-child) {
+.tab-content > div:not(:first-child) {
   display: none;
 }
-
 
 h1 {
   text-align: center;
@@ -99,7 +98,7 @@ label {
   position: absolute;
   transform: translateY(6px);
   left: 13px;
-  color: rgba($white, .5);
+  color: rgba($white, 0.5);
   transition: all 0.25s ease;
   -webkit-backface-visibility: hidden;
   pointer-events: none;
@@ -137,7 +136,7 @@ textarea {
   border: 1px solid $gray-light;
   color: $white;
   border-radius: 0;
-  transition: border-color .25s ease, box-shadow .25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 
   &:focus {
     outline: 0;
@@ -167,7 +166,7 @@ textarea {
     clear: both;
   }
 
-  >div {
+  > div {
     float: left;
     width: 48%;
     margin-right: 4%;
@@ -185,7 +184,7 @@ textarea {
   padding: 15px 0;
   font-weight: $bold;
   text-transform: uppercase;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   background: $main;
   color: $white;
   transition: all 0.5s ease;
@@ -264,8 +263,7 @@ textarea {
   border: 4px ridge $main-light;
   border-radius: 10px;
   text-align: center;
-  background-color: $body-bg;
-  opacity: .85;
+  opacity: 0.85;
 
   .todo-title {
     position: sticky;
@@ -275,7 +273,6 @@ textarea {
     padding: 5px 0 5px 0;
     font-weight: $bold;
     font-size: 1.75em;
-    margin-bottom: 2px;
   }
 
   .todo-list {
@@ -283,6 +280,9 @@ textarea {
     flex-direction: column;
     justify-content: stretch;
     width: 100%;
+    height: 339px;
+    background-color: rgba(193, 189, 186, 0.5);
+    padding-block-start: 5px;
 
     .list-item {
       display: flex;
@@ -290,6 +290,7 @@ textarea {
       border-width: 2px;
       border-radius: 0px 5px 0px 5px;
       border-color: $main;
+      background-color: $body-bg;
       margin: 2px 4px 2px 4px;
       padding: 5px;
       justify-content: space-between;
@@ -298,28 +299,25 @@ textarea {
         height: 20px;
         width: 20px;
         opacity: 0;
-
       }
 
       .move-item:hover {
-        opacity: 1;  
+        opacity: 1;
       }
 
       .delete-item:hover {
-        opacity: 1;  
+        opacity: 1;
       }
-
     }
-        .list-item:hover  {
-
-          img {
-            opacity: 0.3;
-          }
+    .list-item:hover {
+      img {
+        opacity: 0.3;
+      }
     }
   }
 }
 button {
-  opacity: .9;
+  opacity: 0.9;
 }
 
 @media (max-width: 435px) {
@@ -335,7 +333,6 @@ button {
         .clicked {
           display: flex;
         }
-
       }
     }
   }
@@ -345,7 +342,6 @@ button {
 ::-webkit-scrollbar {
   width: 10px;
   display: none;
-  ;
 }
 
 /* Track */
@@ -362,7 +358,6 @@ button {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
 
 @import "profile.scss";
 @import "nav.scss";
