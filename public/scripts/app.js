@@ -89,7 +89,7 @@ $(document).ajaxStop(function() {
   Array.from(categories).forEach(function(element) {
     var sortable = Sortable.create(element, {
       group: "categories",
-      // animation: 150,
+      animation: 150,
       onEnd: function(event) {
         var itemID = event.item.attributes.name.value;
         var newCategory = event.to.id.slice(5);

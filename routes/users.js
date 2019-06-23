@@ -50,7 +50,7 @@ module.exports = (knex) => {
       })
   });
   
-  router.put("/item/:itemID", (req) => {
+  router.put("/item/:itemID", (req, res) => {
     const itemID = req.params.itemID;
     const newCategory = req.body.newCategory;
     knex('todos')
@@ -58,6 +58,7 @@ module.exports = (knex) => {
       .update({ category: newCategory})
       .then(() => {
         console.log(`${itemID} category changed to ${newCategory}`)
+        res.status(301);
       })
   });
 
