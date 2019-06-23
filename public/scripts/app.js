@@ -65,6 +65,46 @@ $(document).ready(function() {
     }
   });
 
+  // $(document).on("touchmove", function() {
+  //   console.log("touch");
+  // });
+
+  // adapted from http://jsfiddle.net/QcQYa/10/
+  function expandListOnHover(target) {
+    var $todoTitle = $(target);
+    var $todoLists = $(target).parent().children(".todo-list");
+
+    console.log($todoLists);
+
+
+  }
+
+  $(".todo-title").on("pointerenter", function(evt) {
+    console.log("touch moving")
+    // var touch = evt.originalEvent.touches[0];
+    expandListOnHover(evt.target);
+  })
+  /*  $(".todo-title").mouseenter(function() {
+      console.log("mouse entered")
+
+      if ($(window).innerWidth() <= 430) {
+        console.log("WORKING!");
+
+        var $thisTodoList = $(this).siblings();
+        var $currentList = $(this).parent().children(".todo-list").id;
+
+        $(".todo-list").each(function(index, someList) {
+          if (someList.id !== $currentList) {
+            $(this).slideUp(300)
+          }
+        })
+        setTimeout(() => {
+          $thisTodoList.slideDown(300);
+        }, 400)
+      }
+
+    });*/
+
   $('.todo-input').keydown(function(event) {
     if (event.which == 13) {
       this.form.submit();
@@ -89,11 +129,11 @@ $(document).ajaxStop(function() {
   Array.from(categories).forEach(function(element) {
     var sortable = Sortable.create(element, {
       group: "categories",
-      // animation: 150,
+      animation: 150,
+      dragoverBubble: true,
+      emptyInsertThreshold: 15,
     });
   });
-
-  // var sortable = Sortable.create(document.getElementsByClassName("list-item"));
 
   $(".delete-item").click(function() {
     var $itemID = $(this).parent()[0].attributes.name.value;
