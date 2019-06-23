@@ -56,7 +56,8 @@ app.use("/api/users", usersRoutes(knex));
 app.get("/", (req, res) => {
   const templateVars = {
     username: null,
-    profilePic: "/images/dp.png"
+    profilePic: "/images/dp.png",
+    background: false
   }
   if (req.session.username) {
     templateVars.username = req.session.username;
@@ -68,22 +69,19 @@ app.get("/", (req, res) => {
         templateVars.background = images.background_pic;
       }
       res.render("index", templateVars);
+      return;
     });
-    return;
   }
   res.redirect("/login");
 
 });
-///FOR POSTING AND GETTING TODOS
-// app.post("/todos", (req, res) => {
-//   res.redirect("/todos");
-// });
 
 // Login Page
 app.get("/login", (req, res) => {
   const templateVars = {
     username: null,
-    profilePic: "/images/dp.png"
+    profilePic: "/images/dp.png",
+    background: false
   }
   if (req.session.username) {
     templateVars.username = req.session.username;
@@ -103,9 +101,16 @@ app.get("/login", (req, res) => {
 app.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  req.session.username = username;
-  res.redirect("/");
-})
+  dataHelpers.validateUser(username, password, (isUser) => {
+    console.log(isUser)
+    if (isUser) {
+      req.session.username = username;
+      res.redirect("/");
+      return;
+    } 
+    res.redirect(401, "/login")
+  });
+});
 app.post("/register", (req, res) => {
   const username = req.body.username;
   const userData = {
@@ -128,10 +133,10 @@ app.get("/logout", (req, res) => {
 app.get("/profile", (req, res) => {
   const templateVars = {
     username: null,
-    profilePic: "/images/dp.png"
+    profilePic: "/images/dp.png",
+    background: false
   }
   if (req.session.username) {
-    templateVars.username = req.session.username;
     templateVars.username = req.session.username;
     getImages(req.session.username, (images) => {
       if (images.profile_pic) {

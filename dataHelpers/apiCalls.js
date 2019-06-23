@@ -58,6 +58,19 @@ module.exports = (knex) => {
                     cb(results[0]);
                 })
             },
+            validateUser: function (username, password, cb) {
+                knex
+                    .select("username")
+                    .from("users")
+                    .where("username", username)
+                    .then((results) => {
+                        let isUser = results;
+                        if (results.length === 0) {
+                            isUser = false;
+                        }
+                        cb(isUser)
+                    })
+            }
 
         }
     )

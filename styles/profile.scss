@@ -8,13 +8,38 @@
 
   .tab-group {
     height: 100%;
-    width: 30%;
+    width: 30vw;
+    max-width: 200px;
     margin-right: 5vw;
+
+    .tab-content {
+      width: 30vw;
+    }
 
     a {
       width: 100%;
       float: none;
+      font-size: 2vw;
     }
 
+  }
+}
+
+@media (min-width: 1200px) {
+  .profile-page {
+    .tab-group {
+      a {
+        font-size: 23px;
+      }
+    }
+  }
+}
+@media (max-width: 800px) {
+  .profile-page {
+    .tab-group {
+      a {
+        font-size: 16px;
+      }
+    }
   }
 }
