@@ -90,7 +90,19 @@ $(document).ajaxStop(function() {
     var sortable = Sortable.create(element, {
       group: "categories",
       // animation: 150,
-    });
+      onEnd: function(event) {
+        var itemID = event.item.attributes.name.value;
+        var newCategory = event.to.id.slice(5);
+        newCategory = newCategory.charAt(0).toUpperCase() + newCategory.slice(1);
+        $.ajax({
+          method: "put",
+          url: `/api/users/item/${itemID}`,
+          data: {
+            newCategory: newCategory
+          }
+        })
+
+    }})
   });
 
   // var sortable = Sortable.create(document.getElementsByClassName("list-item"));

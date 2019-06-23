@@ -49,6 +49,17 @@ module.exports = (knex) => {
         console.error(error);
       })
   });
+  
+  router.put("/item/:itemID", (req) => {
+    const itemID = req.params.itemID;
+    const newCategory = req.body.newCategory;
+    knex('todos')
+      .where({ id: itemID })
+      .update({ category: newCategory})
+      .then(() => {
+        console.log(`${itemID} category changed to ${newCategory}`)
+      })
+  });
 
   // User profiles
   router.post("/profile/:username/editprofile", (req, res) => {
