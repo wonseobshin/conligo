@@ -82,7 +82,8 @@ $(document).ready(function() {
     setTimeout(() => {
       $thisTodoList.slideDown(300);
       setTimeout(() => {
-        isSliding = false;
+        // isSliding = false;
+        todoListStates[target.id] = false;
       }, 300)
     }, 400)
 
@@ -108,8 +109,8 @@ $(document).ready(function() {
     todoListStates[evt.target.id] = true;
     setTimeout(() => {
       if ($(window).innerWidth() <= 430) {
-        if (todoListStates[evt.target.id] && !isSliding) {
-          isSliding = true;
+        if (todoListStates[evt.target.id]) {
+          // isSliding = true;
           expandListOnHover(evt.target);
         }
       }
@@ -122,7 +123,7 @@ $(document).ready(function() {
     console.log(todoListStates);
   })
 
-  let isSliding = false;
+  // let isSliding = false;
   /*  $(".todo-title").mouseenter(function() {
       console.log("mouse entered")
 
