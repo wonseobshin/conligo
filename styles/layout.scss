@@ -244,7 +244,7 @@ textarea {
 }
 
 .flex-inner {
-  /*max-width: 50%;*/
+  max-width: 50%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -306,7 +306,7 @@ textarea {
       }
 
       .move-item:hover {
-        opacity: 1;
+        opacity: 0;
       }
 
       .delete-item:hover {
@@ -315,7 +315,7 @@ textarea {
     }
 
     .list-item:hover {
-      img {
+      .delete-item {
         opacity: 0.3;
       }
     }
@@ -328,16 +328,19 @@ button {
 
 @media (max-width: 435px) {
   body {
+    .flex-inner {
+      max-width: 100%;
 
-    .todo-container {
-      min-height: 0;
+      .todo-container {
+        min-height: 0;
 
-      .todo-list {
-        display: none;
-        height: 80%;
+        .todo-list {
+          display: none;
+          height: 80%;
 
-        .clicked {
-          display: flex;
+          .clicked {
+            display: flex;
+          }
         }
       }
     }
@@ -363,6 +366,22 @@ button {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/*autofill*/
+/*::-webkit-autofill {
+  -webkit-box-shadow: $form-bg !important;
+  background-color: $form-bg !important;
+  font-family: "Titillium Web", sans-serif !important;
+}*/
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px rgba(19, 35, 47, 0.9) inset;
+  font-size: 22px;
+  -webkit-text-fill-color: white;
 }
 
 @import "profile.scss";
