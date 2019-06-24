@@ -65,16 +65,8 @@ $(document).ready(function() {
     }
   });
 
-  // $(document).on("touchmove", function() {
-  //   console.log("touch");
-  // });
-
   // adapted from http://jsfiddle.net/QcQYa/10/
   function expandListOnHover(target) {
-    // var $todoTitle = $(target);
-    // var $todoLists = $(target).parent().children(".todo-list");
-
-    console.log("huh");
 
     var $thisTodoList = $(target).siblings();
     var $currentList = $(target).parent().children(".todo-list")[0].id;
@@ -103,9 +95,6 @@ $(document).ready(function() {
   $('.todo-title').each((_, element) => { todoListStates[element.id] = false });
 
   $(".todo-title").on("pointermove", function(evt) {
-    // console.log("touch moving")
-    // var touch = evt.originalEvent.touches[0];
-    console.log('foo');
     todoListStates[evt.target.id] = true;
     setTimeout(() => {
       if ($(window).innerWidth() <= 430) {
@@ -120,30 +109,7 @@ $(document).ready(function() {
 
   $('.todo-title').on('pointerleave', function(evt) {
     todoListStates[evt.target.id] = false;
-    console.log(todoListStates);
   })
-
-  // let isSliding = false;
-  /*  $(".todo-title").mouseenter(function() {
-      console.log("mouse entered")
-
-      if ($(window).innerWidth() <= 430) {
-        console.log("WORKING!");
-
-        var $thisTodoList = $(this).siblings();
-        var $currentList = $(this).parent().children(".todo-list").id;
-
-        $(".todo-list").each(function(index, someList) {
-          if (someList.id !== $currentList) {
-            $(this).slideUp(300)
-          }
-        })
-        setTimeout(() => {
-          $thisTodoList.slideDown(300);
-        }, 400)
-      }
-
-    });*/
 
   $('.todo-input').keydown(function(event) {
     if (event.which == 13) {

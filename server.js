@@ -102,12 +102,11 @@ app.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   dataHelpers.validateUser(username, password, (isUser) => {
-    console.log(isUser)
     if (isUser) {
       req.session.username = username;
       res.redirect("/");
       return;
-    } 
+    }
     res.redirect(401, "/login")
   });
 });
@@ -126,7 +125,7 @@ app.post("/register", (req, res) => {
 })
 
 app.get("/logout", (req, res) => {
-  delete (req.session.username);
+  delete(req.session.username);
   res.redirect("/");
 })
 // Profile Page

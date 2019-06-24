@@ -44,18 +44,17 @@ module.exports = (knex) => {
     knex('todos')
       .where('id', itemID)
       .del()
-      .then(() => {
-      }).catch((error) => {
+      .then(() => {}).catch((error) => {
         console.error(error);
       })
   });
-  
+
   router.put("/item/:itemID", (req, res) => {
     const itemID = req.params.itemID;
     const newCategory = req.body.newCategory;
     knex('todos')
       .where({ id: itemID })
-      .update({ category: newCategory})
+      .update({ category: newCategory })
       .then(() => {
         console.log(`${itemID} category changed to ${newCategory}`)
         res.status(202).json({});
@@ -106,8 +105,7 @@ module.exports = (knex) => {
   router.post("/profile/:username/personalise", (req, res) => {
     const username = req.session.username;
     let newBackground = req.body.newBackground;
-    console.log(newBackground)
-    knex
+
     knex('users')
       .where({ username: username })
       .update({ background_pic: newBackground })

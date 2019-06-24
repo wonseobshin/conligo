@@ -18,23 +18,15 @@ module.exports = (zomatoSearch) => {
       });
 
       res.on('end', () => {
-        console.log("search complete!");
         const result = JSON.parse(data);
 
         if (result.results_found !== 0 && result.results_found !== undefined) {
           for (const element of result.restaurants) {
-            console.log("FOUND! I'm now searching for name matches...");
-            console.log("result: ", normalizeName(element.restaurant.name));
-            console.log("search: ", normalizeName(zomatoSearch));
             if (normalizeName(element.restaurant.name).includes(normalizeName(zomatoSearch))) {
-              // return element;
-
-              console.log("name match found! resolving 'restaurants' as category");
               resolve(['Restaurant']);
               return;
             };
           }
-          // console.log(restaurant);
         }
 
         resolve(false);
