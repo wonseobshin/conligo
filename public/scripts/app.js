@@ -77,16 +77,20 @@ $(document).ready(function() {
     console.log("huh");
 
     var $thisTodoList = $(target).siblings();
-    var $currentList = $(target).parent().children(".todo-list").id;
+    var $currentList = $(target).parent().children(".todo-list")[0].id;
+
+    setTimeout(() => {
+      $thisTodoList.slideDown(300);
+      setTimeout(() => {
+        isSliding = false;
+      }, 300)
+    }, 400)
 
     $(".todo-list").each(function(index, someList) {
       if (someList.id !== $currentList) {
         $(this).slideUp(300)
       }
     })
-    setTimeout(() => {
-      $thisTodoList.slideDown(300);
-    }, 400)
 
   }
 
@@ -94,11 +98,31 @@ $(document).ready(function() {
     event.preventDefault();
   });
 
-  $(".todo-title").on("pointerenter", function(evt) {
-    console.log("touch moving")
+  const todoListStates = {}
+  $('.todo-title').each((_, element) => { todoListStates[element.id] = false });
+
+  $(".todo-title").on("pointermove", function(evt) {
+    // console.log("touch moving")
     // var touch = evt.originalEvent.touches[0];
-    expandListOnHover(evt.target);
+    console.log('foo');
+    todoListStates[evt.target.id] = true;
+    setTimeout(() => {
+      if ($(window).innerWidth() <= 430) {
+        if (todoListStates[evt.target.id] && !isSliding) {
+          isSliding = true;
+          expandListOnHover(evt.target);
+        }
+      }
+    }, 1000)
+
   })
+
+  $('.todo-title').on('pointerleave', function(evt) {
+    todoListStates[evt.target.id] = false;
+    console.log(todoListStates);
+  })
+
+  let isSliding = false;
   /*  $(".todo-title").mouseenter(function() {
       console.log("mouse entered")
 
