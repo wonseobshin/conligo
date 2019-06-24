@@ -71,13 +71,28 @@ $(document).ready(function() {
 
   // adapted from http://jsfiddle.net/QcQYa/10/
   function expandListOnHover(target) {
-    var $todoTitle = $(target);
-    var $todoLists = $(target).parent().children(".todo-list");
+    // var $todoTitle = $(target);
+    // var $todoLists = $(target).parent().children(".todo-list");
 
-    console.log($todoLists);
+    console.log("huh");
 
+    var $thisTodoList = $(target).siblings();
+    var $currentList = $(target).parent().children(".todo-list").id;
+
+    $(".todo-list").each(function(index, someList) {
+      if (someList.id !== $currentList) {
+        $(this).slideUp(300)
+      }
+    })
+    setTimeout(() => {
+      $thisTodoList.slideDown(300);
+    }, 400)
 
   }
+
+  $(".todo-list").on("touchmove", function(event) {
+    event.preventDefault();
+  });
 
   $(".todo-title").on("pointerenter", function(evt) {
     console.log("touch moving")
