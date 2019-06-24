@@ -39,12 +39,13 @@ module.exports = (knex) => {
     }
   })
 
-  router.delete("/item/:itemID", (req) => {
+  router.delete("/item/:itemID", (req, res) => {
     const itemID = Number(req.params.itemID);
     knex('todos')
       .where('id', itemID)
       .del()
       .then(() => {
+        res.status(202).json({});
       }).catch((error) => {
         console.error(error);
       })
